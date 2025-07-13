@@ -24,7 +24,7 @@
     <body>
         <div class="container">
             <div class="top-side-buttons">
-                <a href="/">
+                <a class="top-side-buttons-current">
                     <button>
                         Consultar
                     </button>

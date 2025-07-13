@@ -1,10 +1,3 @@
-
-<?php
-    // Captura o valor enviado via POST
-    $nome = $_POST['name'] ?? 'Nome não informado';
-
-?>
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -24,7 +17,7 @@
                         Consultar
                     </button>
                 </a>
-                <a href="/register">
+                <a class="top-side-buttons-current">
                     <button>
                         Cadastrar
                     </button>
@@ -34,7 +27,8 @@
             <div class="consult-container">
                 <h4>Cadastrar Cliente</h4>
 
-                <form method="get" class="form-consult">
+                <form method="POST" action="{{ route('new') }}" class="form-consult">
+                    @csrf
                     <div>
                         <div class="form-field">
                             <label for="cpf">CPF:</label>
@@ -47,8 +41,8 @@
                         </div>
 
                         <div class="form-field">
-                            <label for="birth">Data Nascimento:</label>
-                            <input type="date" id="birth" name="birth">
+                            <label for="birthdate">Data Nascimento:</label>
+                            <input type="date" id="birthdate" name="birthdate">
                         </div>
 
                         <div class="form-field">
@@ -67,16 +61,46 @@
                     </div>
 
                     <div>
+                        <div class="form-field">
+                            <label for="address">Endereço:</label>
+                            <input type="text" id="address" name="address">
+                        </div>
+
+                        <div class="form-field">
+                            <label for="state">Estaddo:</label>
+                            <input type="text" id="state" name="state">
+                        </div>
+
+                        <div class="form-field">
+                            <label for="city">Cidade:</label>
+                            <input type="text" id="city" name="city">
+                        </div>
 
                         <div class="buttons-container">
-                            <button type="submit" class="search-btn">Pesquisar</button>
-
-                            <a href="/">
-                                <button type="button" class="clear-btn">Limpar</button>
-                            </a>
+                            <button type="submit" class="search-btn">Salvar</button>
                         </div>
                     </div>
                 </form>
+
+                @if (session('success'))
+                    <div class="alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                @if (session('fail'))
+                    <div class="alert-danger">{{ session('fail') }}</div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $erro)
+                                <li>{{ $erro }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </div>
         </div>
     </body>

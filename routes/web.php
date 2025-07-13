@@ -12,3 +12,5 @@ Route::get('/', [ClientController::class, 'index']);
 Route::get('/register', function () {
     return view('register');
 });
+
+Route::post('/register', [ClientController::class, 'new'])->name('new');
