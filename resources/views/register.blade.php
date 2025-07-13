@@ -14,12 +14,27 @@
             <div class="top-side-buttons">
                 <a href="/">
                     <button>
-                        Consultar
+                        Consultar Clientes
                     </button>
                 </a>
                 <a class="top-side-buttons-current">
                     <button>
-                        Cadastrar
+                        Cadastrar Cliente
+                    </button>
+                </a>
+                <a href="/representatives/city">
+                    <button>
+                        Representantes (cidade)
+                    </button>
+                </a>
+                <a href="/representatives/client">
+                    <button>
+                        Representantes (cliente)
+                    </button>
+                </a>
+                <a href="/representatives/management">
+                    <button>
+                        Gerenciar Representantes
                     </button>
                 </a>
             </div>
