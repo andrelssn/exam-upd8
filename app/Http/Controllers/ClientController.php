@@ -126,6 +126,13 @@ class ClientController extends Controller
         }
     }
 
+    public function editPage(Request $request)
+    {
+        $clientData = Clients::find($request->id);
+
+        return view('edit', ['clientData' => $clientData]);
+    }
+
     /**
      * Display the specified resource.
      */
@@ -139,7 +146,29 @@ class ClientController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try {
+            $validated = $request->validate([
+                'cpf'       => 'required|string|max:255',
+                'name'      => 'required|string|max:255',
+                'birthdate' => 'required|date',
+                'gender'    => 'required|string|max:255',
+                'address'   => 'required|string|max:255',
+                'state'     => 'required|string|max:255',
+                'city'      => 'required|string|max:255',
+            ]);
+
+            $client = Clients::findOrFail($id);
+
+            $updated = $client->update($validated);
+
+            if ($updated) {
+                return redirect()->route('edit', $id)->with('success', 'Cliente atualizado com sucesso!');
+            } else {
+                return redirect()->route('edit', $id)->with('fail', 'Erro ao atualizar cliente. Tente novamente.');
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('edit', $id)->with('fail', 'Erro inesperado: ' . $e->getMessage());
+        }
     }
 
     /**

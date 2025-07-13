@@ -128,9 +128,11 @@
                     <?php foreach ($clients as $client): ?>
                         <tr class="table-tr">
                             <td>
-                                <button class="edit-btn">
-                                    Editar
-                                </button>
+                                <form action="{{ route('edit', $client->id) }}" method="GET">
+                                    <button type="submit" class="edit-btn">
+                                        Editar
+                                    </button>
+                                </form>
                             </td>
                             <td>
                                 <form action="{{ route('destroy', $client->id) }}" method="POST" onsubmit="return confirm('Deseja realmente excluir?')">
