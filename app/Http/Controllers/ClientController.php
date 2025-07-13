@@ -101,9 +101,29 @@ class ClientController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function new(Request $request)
     {
-        //
+        try {
+            $validated = $request->validate([
+                'cpf'       => 'required|string|max:255',
+                'name'      => 'required|string|max:255',
+                'birthdate' => 'required|date',
+                'gender'    => 'required|string|max:255',
+                'address'   => 'required|string|max:255',
+                'state'     => 'required|string|max:255',
+                'city'      => 'required|string|max:255',
+            ]);
+
+            $client = Clients::create($validated);
+
+            if ($client) {
+                return redirect('/register')->with('success', 'Cliente cadastrado com sucesso!');
+            } else {
+                return redirect('/register')->with('fail', 'Erro ao cadastrar cliente. Tente novamente.');
+            }
+        } catch (\Exception $e) {
+            return redirect('/register')->with('fail', 'Erro inesperado: ' . $e->getMessage());
+        }
     }
 
     /**
