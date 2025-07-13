@@ -22,11 +22,20 @@
     </head>
 
     <body>
-        <header>
-           head
-        </header>
-
         <div class="container">
+            <div class="top-side-buttons">
+                <a href="/">
+                    <button>
+                        Consultar
+                    </button>
+                </a>
+                <a href="/register">
+                    <button>
+                        Cadastrar
+                    </button>
+                </a>
+            </div>
+
             <div class="consult-container">
                 <h4>Consulta Cliente</h4>
 
@@ -63,24 +72,39 @@
                     </div>
 
                     <div>
-                        <div>
+                        <div class="select-input">
                             <label>Estado</a>
                             <select name="state">
-                                <option value="sim">Sim</option>
-                                <option value="nao">Não</option>
+                                <option value="<?= null ?>">nenhuma</option>
+
+                                <?php foreach ($stateList as $key => $state) : ?>
+                                    <option value="<?= $state->state ?>">
+                                        <?= $state->state ?>
+                                    </option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
 
-                        <div>
+                        <div class="select-input">
                             <label>Cidade</a>
                             <select name="city">
-                                <option value="sim">Sim</option>
-                                <option value="nao">Não</option>
+                                <option value="<?= null ?>">nenhuma</option>
+
+                                <?php foreach ($cityList as $key => $city) : ?>
+                                    <option value="<?= $city->city ?>">
+                                        <?= $city->city ?>
+                                    </option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
 
-                        <button type="submit">Pesquisar</button>
-                        <button type="submit">Limpar</button>
+                        <div class="buttons-container">
+                            <button type="submit" class="search-btn">Pesquisar</button>
+
+                            <a href="/">
+                                <button type="button" class="clear-btn">Limpar</button>
+                            </a>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -124,6 +148,13 @@
                 </table>
 
                 <form action="" method="get">
+                    <!-- Mantem os filtros atuais -->
+                    <?php foreach ($_GET as $key => $value): ?>
+                        <?php if ($key !== 'page'): // não duplicar o parâmetro 'page' ?>
+                            <input type="hidden" name="<?= htmlspecialchars($key) ?>" value="<?= htmlspecialchars($value) ?>">
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+
                     <div class="pagination">
                         <?php foreach ($pages as $page): ?>
                             <?php if ($page === $currentPage): ?>
