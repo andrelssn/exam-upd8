@@ -6,14 +6,16 @@
     position: relative;
     justify-self: center;
     margin-top: 10%;
-    padding: 30px 0px;
     width: 70%;
+    padding-bottom: 30px;
     background-color: #ffffff !important;
+    border: 2px solid #6b6b6b;
     border-radius: 10px;
+    box-shadow: 0px 0px 6px 2px #6b6b6b;
 }
 
 body {
-    background-color: #201f22 !important;
+    background-color: #b4b4b4 !important;
 }
 
 .consult-container {
@@ -31,6 +33,7 @@ body {
 }
 
 .form-consult {
+    position: relative;
     display: grid;
 }
 
@@ -39,19 +42,22 @@ body {
     padding: 5px 10px;
 }
 
-.form-field {
+.form-field,
+.select-input {
     display: flex;
     align-items: center;
 }
 
-.form-field input {
+.form-field input,
+.select-input select {
     padding: 5px;
     margin-left: 5px;
-    border: 2px solid #585858;
+    border: 1px solid #585858;
     border-radius: 5px;
 }
 
-.form-field label {
+.form-field label,
+.select-input label {
     color: #333333;
     font-weight: bold;
 }
@@ -129,4 +135,55 @@ table, th, td {
     padding: 7px 10px;
     border-radius: 6px;
     border: 1px solid #505050;
+}
+
+.buttons-container {
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
+}
+
+.search-btn {
+    padding: 8px;
+    border: none;
+    color: #ffffff;
+    background-color: #2e81b1;
+    border-radius: 4px;
+}
+
+.search-btn:hover {
+    cursor: pointer;
+    background-color: #216085;
+}
+
+.clear-btn {
+    margin-left: 10px;
+    padding: 8px;
+    border: none;
+    background-color: #c7c7c7;
+    border-radius: 4px;
+}
+
+.clear-btn:hover {
+    cursor: pointer;
+    background-color: #a3a3a3;
+}
+
+.top-side-buttons {
+    padding: 10px;
+    background-color: #2e81b1;
+    margin-bottom: 10px;
+}
+
+.top-side-buttons a button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.top-side-buttons a button:hover {
+    cursor: pointer;
+    color: #ffffff;
+    background-color: #216085;
 }

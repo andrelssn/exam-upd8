@@ -3,18 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Services\Api\Clients\ClientsService;
+use App\Models\Clients;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ClientController extends Controller
 {
-    private $clientsService;
-
-    public function __construct(ClientsService $clientsService)
-    {
-        $this->clientsService = $clientsService;
-    }
-
     /**
      * Display a listing of the resource.
      */
@@ -31,23 +26,76 @@ class ClientController extends Controller
         };
 
         if($request->birth !== null) {
-            $params['birth'] = $request->birth;
+            $params['birthdate'] = $request->birth;
         };
 
-        // if($request->state !== null) {
-        //     $params['state'] = $request->state;
-        // };
+        if($request->gender !== null) {
+            $params['gender'] = $request->gender;
+        };
 
-        // if($request->city !== null) {
-        //     $params['city'] = $request->city;
-        // };
+        if($request->state !== null) {
+            $params['state'] = $request->state;
+        };
 
-        $clients = $this->clientsService->getClientsList($params);
+        if($request->city !== null) {
+            $params['city'] = $request->city;
+        };
+
+        $clients = $this->getClientsList($params);
+        $cityList = $this->getCity();
+        $stateList = $this->getState();
 
         $currentPage = $clients->currentPage();
         $lastPage = $clients->lastPage();
 
-        return view('consult', ['clients' => $clients, 'currentPage' => $currentPage, 'lastPage' => $lastPage]);
+        return view('consult', [
+            'clients'     => $clients,
+            'currentPage' => $currentPage,
+            'lastPage'    => $lastPage,
+            'cityList'    => $cityList,
+            'stateList'   => $stateList
+        ]);
+    }
+
+    public function getClientsList($params): LengthAwarePaginator
+    {
+        $list = Clients::query()
+            ->where($params)
+            ->paginate(4);
+
+        if (!$list) {
+            return response()->json(['message' => 'list empty']);
+        }
+
+        return $list;
+    }
+
+    public function getCity(): Collection
+    {
+        $list = Clients::query()
+            ->select("city")
+            ->groupBy("city")
+            ->get();
+
+        if (!$list) {
+            return response()->json(['message' => 'list empty']);
+        }
+
+        return $list;
+    }
+
+    public function getState(): Collection
+    {
+        $list = Clients::query()
+            ->select("state")
+            ->groupBy("state")
+            ->get();
+
+        if (!$list) {
+            return response()->json(['message' => 'list empty']);
+        }
+
+        return $list;
     }
 
     /**

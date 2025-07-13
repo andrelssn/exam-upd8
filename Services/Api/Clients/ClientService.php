@@ -5,7 +5,7 @@ namespace App\Services\Api\Clients;
 use App\Models\Clients;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class ClientsService
+class ClientService
 {
     public function getClientsList($params): LengthAwarePaginator
     {
