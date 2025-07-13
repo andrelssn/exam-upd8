@@ -1,0 +1,132 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    position: relative;
+    justify-self: center;
+    margin-top: 10%;
+    padding: 30px 0px;
+    width: 70%;
+    background-color: #ffffff !important;
+    border-radius: 10px;
+}
+
+body {
+    background-color: #201f22 !important;
+}
+
+.consult-container {
+    width: 95%;
+    margin: auto;
+    border: 2px solid #7c7c7c !important;
+    border-radius: 10px;
+}
+
+.consult-container h4,
+.result-container h4 {
+    color: #358dc0;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.form-consult {
+    display: grid;
+}
+
+.form-consult div {
+    display: flex;
+    padding: 5px 10px;
+}
+
+.form-field {
+    display: flex;
+    align-items: center;
+}
+
+.form-field input {
+    padding: 5px;
+    margin-left: 5px;
+    border: 2px solid #585858;
+    border-radius: 5px;
+}
+
+.form-field label {
+    color: #333333;
+    font-weight: bold;
+}
+
+.result-container {
+    width: 95%;
+    margin: auto;
+    border: 2px solid #7c7c7c !important;
+    border-radius: 10px;
+}
+
+.table-container {
+    width: 97%;
+    margin: auto;
+    border: 1px solid #575757;
+}
+
+.table-tr th {
+    padding: 10px 0px;
+    background-color: #cccccc;
+}
+
+.table-tr td {
+    padding: 10px 0px;
+    text-align: center;
+    align-items: center;
+}
+
+table, th, td {
+    border: 1px solid #777777;
+    border-collapse: collapse;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0px;
+}
+
+.pagination-btn {
+    width: 35px;
+    height: 40px;
+    margin: 0px 5px;
+    border: 1px solid #a1a1a1;
+    border-radius: 4px;
+}
+
+.pagination-btn-current {
+    width: 35px;
+    height: 40px;
+    margin: 0px 5px;
+    background-color: #358dc0;
+    color: #ffffff;
+    border-radius: 4px;
+}
+
+.pagination-btn:hover,
+.pagination-btn-current:hover,
+.edit-btn:hover,
+.delete-btn:hover {
+    cursor: pointer;
+}
+
+.edit-btn {
+    color: #ffffff;
+    background-color: #31881c;
+    padding: 7px 10px;
+    border-radius: 6px;
+    border: 1px solid #505050;
+}
+
+.delete-btn {
+    color: #ffffff;
+    background-color: #7c1515;
+    padding: 7px 10px;
+    border-radius: 6px;
+    border: 1px solid #505050;
+}
