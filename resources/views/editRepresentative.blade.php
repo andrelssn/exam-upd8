@@ -4,9 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Editar Cliente</title>
+        <title>Editar Representante</title>
 
-        <link rel="stylesheet" href="../css/styles.css">
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     </head>
 
     <body>
@@ -40,56 +40,25 @@
             </div>
 
             <div class="consult-container">
-                <h4>Editar Cliente</h4>
+                <h4>Editar Representante</h4>
 
-                <form method="POST" action="{{ route('sendEdit', $clientData->id) }}" class="form-consult">
+                <form method="POST" action="{{ route('sendEditRepresentative', $user->id) }}" class="form-consult">
                     @csrf
                     @method('PUT')
                     <div>
                         <div class="form-field">
-                            <label for="cpf">CPF:</label>
-                            <input value="{{$clientData->cpf}}" type="text" id="cpf" name="cpf" placeholder="089.518.000-67">
-                        </div>
-
-                        <div class="form-field">
                             <label for="name">Nome:</label>
-                            <input value="{{$clientData->name}}" type="text" id="name" name="name">
-                        </div>
-
-                        <div class="form-field">
-                            <label for="birthdate">Data Nascimento:</label>
-                            <input value="{{ \Carbon\Carbon::parse($clientData->birthdate)->format('Y-m-d') }}" type="date" id="birthdate" name="birthdate">
-                        </div>
-
-                        <div class="form-field">
-                            <label for="gender">Sexo:</label>
-
-                            <div class="form-field">
-                                <input {{ $clientData->gender === 'masculino' ? 'checked' : '' }} type="radio" id="masculino" name="gender" value="masculino" />
-                                <label for="masculino">Masculino</label>
-                            </div>
-
-                            <div class="form-field">
-                                <input {{ $clientData->gender === 'feminino' ? 'checked' : '' }} type="radio" id="feminino" name="gender" value="feminino" />
-                                <label for="feminino">Feminino</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="form-field">
-                            <label for="address">Endereço:</label>
-                            <input value="{{$clientData->address}}" type="text" id="address" name="address">
+                            <input value="{{$user->name}}" type="text" id="name" name="name">
                         </div>
 
                         <div class="form-field">
                             <label for="state">Estado:</label>
-                            <input value="{{$clientData->state}}" type="text" id="state" name="state">
+                            <input value="{{$user->state}}" type="text" id="state" name="state">
                         </div>
 
                         <div class="form-field">
                             <label for="city">Cidade:</label>
-                            <input value="{{$clientData->city}}" type="text" id="city" name="city">
+                            <input value="{{$user->city}}" type="text" id="city" name="city">
                         </div>
 
                         <div class="buttons-container">
