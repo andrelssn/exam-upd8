@@ -147,6 +147,13 @@ class ClientController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $cliente = Clients::findOrFail($id); // procura ou lança 404
+            $cliente->delete();
+
+            return redirect('/')->with('success', 'Cliente excluído com sucesso!');
+        } catch (\Exception $e) {
+            return redirect('/')->with('fail', 'Erro ao excluir cliente: ' . $e->getMessage());
+        }
     }
 }

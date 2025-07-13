@@ -14,3 +14,5 @@ Route::get('/register', function () {
 });
 
 Route::post('/register', [ClientController::class, 'new'])->name('new');
+
+Route::delete('/{id}', [ClientController::class, 'destroy'])->name('destroy');

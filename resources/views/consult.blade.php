@@ -133,9 +133,13 @@
                                 </button>
                             </td>
                             <td>
-                                <button class="delete-btn">
-                                    Excluir
-                                </button>
+                                <form action="{{ route('destroy', $client->id) }}" method="POST" onsubmit="return confirm('Deseja realmente excluir?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="delete-btn">
+                                        Excluir
+                                    </button>
+                                </form>
                             </td>
                             <td><?= $client->name ?></td>
                             <td><?= $client->cpf ?></td>
@@ -169,6 +173,22 @@
                         <?php endforeach; ?>
                     </div>
                 </form>
+
+                @if (session('success'))
+                    <div class="alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $erro)
+                                <li>{{ $erro }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </div>
 
         </div>
