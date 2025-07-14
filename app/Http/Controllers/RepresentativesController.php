@@ -111,20 +111,6 @@ class RepresentativesController extends Controller
         return $list;
     }
 
-    public function getState(): Collection
-    {
-        $list = Clients::query()
-            ->select("state")
-            ->groupBy("state")
-            ->get();
-
-        if (!$list) {
-            return response()->json(['message' => 'list empty']);
-        }
-
-        return $list;
-    }
-
     public function getClient(): Collection
     {
         $list = Clients::query()
